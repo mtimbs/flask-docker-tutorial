@@ -43,7 +43,9 @@ stages:
               versionSpec: '3.7'
               architecture: 'x64'
       steps:
-        - script: pipenv check
+        - script: |
+            pip install pipenv
+            pipenv check
           displayName: 'Check for known security vulnerabilities in dependencies'
 
 
