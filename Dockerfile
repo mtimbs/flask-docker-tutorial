@@ -6,13 +6,10 @@ WORKDIR /app
 
 # -- Adding Pipfiles
 COPY Pipfile Pipfile
-#COPY Pipfile.lock Pipfile.lock
+COPY Pipfile.lock Pipfile.lock
 
 RUN pipenv install
 
+COPY . .
 
-#
-#COPY . .
-#
-#CMD ["pipenv", "run", "python", "app.py"]
-# docker-compose up --build
+CMD ["pipenv", "run", "python", "app.py"]
