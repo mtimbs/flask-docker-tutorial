@@ -37,7 +37,7 @@ stages:
   - job: Security
     steps:
       - script: pipenv check
-      displayName: 'Check for known security vulnerabilities in dependencies'
+        displayName: 'Check for known security vulnerabilities in dependencies'
 
 
   - stage: Test
@@ -54,4 +54,4 @@ stages:
       - script: |
           pipenv install --dev
           python -m pytest -x
-      displayName: 'Run tests'
+        displayName: 'Run tests'
