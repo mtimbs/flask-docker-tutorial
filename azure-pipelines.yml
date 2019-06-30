@@ -44,7 +44,7 @@ stages:
               architecture: 'x64'
       steps:
         - script: |
-            pip install pipenv
+            sudo -H pip install -U pipenv
             pipenv check
           displayName: 'Check for known security vulnerabilities in dependencies'
 
