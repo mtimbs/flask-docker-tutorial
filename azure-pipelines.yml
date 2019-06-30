@@ -45,7 +45,6 @@ stages:
       steps:
         - script: |
             sudo -H pip install -U pipenv
-            pipenv install --python 3.7
             pipenv check
           displayName: 'Check for known security vulnerabilities in dependencies'
 
