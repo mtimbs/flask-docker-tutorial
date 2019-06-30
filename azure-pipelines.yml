@@ -44,14 +44,14 @@ stages:
     # Fail if tests don't pass
     jobs:
       - job: tests
-    pool:
-      vmImage: 'ubuntu-16.04' # other options: 'macOS-10.13', 'vs2017-win2016'
-    steps:
-      - task: UsePythonVersion@0
-        inputs:
-          versionSpec: '3.7'
-          architecture: 'x64'
-      - script: |
-          pipenv install --dev
-          python -m pytest -x
-        displayName: 'Run tests'
+        pool:
+          vmImage: 'ubuntu-16.04' # other options: 'macOS-10.13', 'vs2017-win2016'
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '3.7'
+              architecture: 'x64'
+          - script: |
+              pipenv install --dev
+              python -m pytest -x
+            displayName: 'Run tests'
