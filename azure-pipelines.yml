@@ -34,10 +34,10 @@ stages:
           displayName: 'Check for lockfile'
 
   # Don't deploy if dependencies have known security vulnerabilities
-  - job: Security
-    steps:
-      - script: pipenv check
-        displayName: 'Check for known security vulnerabilities in dependencies'
+    - job: Security
+      steps:
+        - script: pipenv check
+          displayName: 'Check for known security vulnerabilities in dependencies'
 
 
   - stage: Test
