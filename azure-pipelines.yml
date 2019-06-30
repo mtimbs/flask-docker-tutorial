@@ -35,6 +35,13 @@ stages:
 
   # Don't deploy if dependencies have known security vulnerabilities
     - job: Security
+      pool:
+        vmImage: 'ubuntu-16.04' # other options: 'macOS-10.13', 'vs2017-win2016'
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '3.7'
+              architecture: 'x64'
       steps:
         - script: pipenv check
           displayName: 'Check for known security vulnerabilities in dependencies'
