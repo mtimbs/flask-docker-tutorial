@@ -1,0 +1,58 @@
+# Should be able to replace this with a pre-defined docker image that we sent to azure image repository.
+# example
+#container:
+#  image: myprivate.azurecr.io/python37custom
+#  endpoint: my_acr_connection
+
+pool:
+  vmImage: 'ubuntu-16.04' # other options: 'macOS-10.13', 'vs2017-win2016'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.6'
+    architecture: 'x64'
+
+# specific branch build
+trigger:
+  branches:
+    include:
+    - master
+    - dev
+    exclude:
+    - feature/*
+
+# specific branch build
+pr:
+  branches:
+    include:
+    - master
+    - dev
+    - feature/*
+
+stages:
+  # Protect against deploys running pipenv --install on a repo with no lockfile
+  - stage: Precheck
+    jobs:
+    - job: Lockfile
+      steps:
+        - bash: |
+            if [! -e Pipfile.lock ]; then
+              echo "NO LOCK FILE."; false
+            fi
+        displayName: 'Check for lockfile'
+
+  # Don't deploy if dependencies have known security vulnerabilities
+  - job: Security
+    steps:
+      - script: pipenv check
+      displayName: 'Check for known security vulnerabilities in dependencies'
+
+
+  - stage: Test
+    # Fail if tests don't pass
+    steps:
+      - script: |
+          pipenv install --dev
+          pytest
+      displayName: 'Run tests'
