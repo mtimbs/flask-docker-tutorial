@@ -61,6 +61,7 @@ stages:
               versionSpec: '3.7'
               architecture: 'x64'
           - script: |
+              sudo -H pip install -U pipenv
               pipenv install --dev
               python -m pytest -x
             displayName: 'Run tests'
