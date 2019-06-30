@@ -31,7 +31,7 @@ stages:
             if [! -e Pipfile.lock ]; then
               echo "NO LOCK FILE."; false
             fi
-        displayName: 'Check for lockfile'
+          displayName: 'Check for lockfile'
 
   # Don't deploy if dependencies have known security vulnerabilities
   - job: Security
