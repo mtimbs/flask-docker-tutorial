@@ -12,4 +12,6 @@ RUN pipenv install
 
 COPY . .
 
+RUN apt-get update
+
 CMD ["pipenv", "run", "python", "app.py"]

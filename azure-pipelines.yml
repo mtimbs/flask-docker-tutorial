@@ -1,10 +1,3 @@
-# Should be able to replace this with a pre-defined docker image that we sent to azure image repository.
-# example
-#container:
-#  image: myprivate.azurecr.io/python37custom
-#  endpoint: my_acr_connection
-
-# specific branch build
 trigger:
   branches:
     include:
@@ -45,9 +38,7 @@ stages:
           - script: |
               sudo -H pip install -U pipenv
               pipenv check
-              displayName: 'Check for known security vulnerabilities in dependencies'
-
-
+            displayName: 'Check for known security vulnerabilities in dependencies'
 
   - stage: Test
     # Fail if tests don't pass
