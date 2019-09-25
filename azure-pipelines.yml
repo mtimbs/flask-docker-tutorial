@@ -81,6 +81,6 @@ stages:
               repository: $(imageName)
               dockerfile: $(dockerfilePath)
               containerRegistry: TestRegistry
-              tags:
+              tags: |
                 $(Build.BuildId)
                 $(Build.SourceVersion)
