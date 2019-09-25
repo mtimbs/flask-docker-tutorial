@@ -84,3 +84,4 @@ stages:
               tags: |
                 $(Build.BuildId)
                 $(Build.SourceVersion)
+
