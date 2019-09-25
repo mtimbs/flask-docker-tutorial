@@ -62,7 +62,7 @@ stages:
           - script: |
               sudo -H pip install -U pipenv
               pipenv install --dev
-              python -m pytest -x
+              pipenv run pytest tests
             displayName: 'Run tests'
 
 
