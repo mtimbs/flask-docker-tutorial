@@ -80,7 +80,7 @@ stages:
               command: buildAndPush
               repository: $(imageName)
               dockerfile: $(dockerfilePath)
-              containerRegistry: $(dockerRegistryServiceConnection)
+              containerRegistry: TestRegistry
               tags:
                 $(Build.BuildId)
                 $(Build.SourceVersion)
