@@ -70,18 +70,26 @@ stages:
     displayName: Build and push stage
     jobs:
       - job: Build
-        displayName: Build
+        displayName: Build and Push
         pool:
           vmImage: $(vmImageName)
         steps:
-          - task: Docker@2
-            displayName: Build and push an image to container registry
+          - task: DockerCompose@0
             inputs:
-              command: buildAndPush
-              repository: $(imageName)
-              dockerfile: $(dockerfilePath)
-              containerRegistry: TestRegistry
-              tags: |
-                $(Build.BuildId)
-                $(Build.SourceVersion)
+              azureSubscriptionEndpoint: AzureRM
+              azureContainerRegistry: mtimbs
+              dockerComposeFile: docker-compose.yml
+              projectName: $(imageName)
+              action: 'Build services'
+              includeSourceTags: true
+              includeLatestTag: true
+          - task: DockerCompose@0
+            inputs:
+              azureSubscriptionEndpoint: AzureRM
+              azureContainerRegistry: mtimbs
+              dockerComposeFile: docker-compose.yml
+              projectName: $(imageName)
+              action: 'Push services'
+              includeSourceTags: true
+              includeLatestTag: true
 
