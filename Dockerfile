@@ -8,6 +8,8 @@ WORKDIR /app
 COPY Pipfile Pipfile
 COPY Pipfile.lock Pipfile.lock
 
+EXPOSE 5010
+
 RUN pipenv install
 
 COPY . .

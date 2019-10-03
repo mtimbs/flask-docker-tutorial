@@ -4,6 +4,10 @@ services:
         build: .
         ports:
             - "5000:5000"
-        volumes:
-            - .:/app
+        depends_on:
+            - syslog
         container_name: flask
+
+    syslog:
+        image: rsyslog/syslog_appliance_alpine
+        container_name: rsyslog
